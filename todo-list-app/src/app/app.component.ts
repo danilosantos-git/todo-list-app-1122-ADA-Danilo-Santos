@@ -22,10 +22,12 @@ export class AppComponent {
   }
 
   onSubmit(form: NgForm) {
-    let todo = new Todo(Guid.create(), form.value.title, false);
-    this.todos.push(todo);
-    this.storageService.saveTodos(this.todos);
-    form.resetForm();
+    if (form.value.title !== null && form.value.title.trim() !== '') {
+      let todo = new Todo(Guid.create(), form.value.title, false);
+      this.todos.push(todo);
+      this.storageService.saveTodos(this.todos);
+      form.resetForm();
+    }
   }
 
   onComplete(id: Guid) {

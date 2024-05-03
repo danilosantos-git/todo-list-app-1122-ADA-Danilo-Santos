@@ -4,7 +4,14 @@
   <form class="todo-form" #f="ngForm" (ngSubmit)="onSubmit(f)">
     <div class="row">
       <div class="input-field col s9">
-        <input type="text" name="title" id="title" ngModel />
+        <input
+          type="text"
+          name="title"
+          id="title"
+          ngModel
+          maxlength="40"
+          required
+        />
         <label for="title">O que vamos fazer?</label>
       </div>
 
@@ -23,7 +30,12 @@
             {{ todo.title }}
           </div>
           <ng-template #editTodo>
-            <input type="text" [(ngModel)]="editingTitle" />
+            <input
+              type="text"
+              [(ngModel)]="editingTitle"
+              maxlength="40"
+              required
+            />
           </ng-template>
           <div>
             <button

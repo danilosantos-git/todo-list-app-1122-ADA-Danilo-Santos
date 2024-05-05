@@ -23,7 +23,7 @@ export class AppComponent {
 
   onSubmit(form: NgForm) {
     if (form.value.title !== null && form.value.title.trim() !== '') {
-      let todo = new Todo(Guid.create(), form.value.title, false);
+      const todo = new Todo(Guid.create(), form.value.title, false);
       this.todos.push(todo);
       this.storageService.saveTodos(this.todos);
       form.resetForm();
@@ -31,7 +31,7 @@ export class AppComponent {
   }
 
   onComplete(id: Guid) {
-    let todo = this.todos.filter(x => x.id === id)[0];
+    const todo = this.todos.filter(x => x.id === id)[0];
     const isConfirmed = confirm(`Deseja marcar "${todo.title}" como concluída?`);
     if (isConfirmed) {
       todo.isComplete = true;
@@ -41,7 +41,7 @@ export class AppComponent {
   }
 
   onDelete(id: Guid) {
-    let todo = this.todos.filter(x => x.id === id)[0];
+    const todo = this.todos.filter(x => x.id === id)[0];
 
     if (!todo.isComplete) {
       const isConfirmed = confirm(`Excluir "${todo.title}"?`);
@@ -55,7 +55,7 @@ export class AppComponent {
   }
 
   deleteTask(todo: Todo) {
-    let index = this.todos.indexOf(todo, 0);
+    const index = this.todos.indexOf(todo, 0);
     if (index > -1) {
       this.todos.splice(index, 1);
     }
@@ -63,7 +63,7 @@ export class AppComponent {
   }
 
   onEdit(id: Guid, newTitle: string) {
-    let todo = this.todos.find(x => x.id.toString() === id.toString());
+    const todo = this.todos.find(x => x.id.toString() === id.toString());
     if (todo) {
       todo.title = newTitle;
       this.storageService.saveTodos(this.todos);
